@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>offlineHTML</title>
+
+    <style>
+        body {
+            touch-action: none;
+            user-zoom: fixed;
+            background-color: #1D1A31;
+        }
+
+        #HTMLOut {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            background-color: #C1A5A9;
+            width: 100%;
+            height: 50%;
+            border: none;
+        }
+
+        /* Container styles */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* Create three equal-width columns */
+            grid-gap: 10px;
+            /* Adjust the gap between columns */
+        }
+
+        /* Common styles for labels */
+        h3 {
+            color: #9A4C95;
+            text-align: center;
+            /* Center text */
+        }
+
+        /* Styles for each textarea and its container */
+        .textarea-container {
+            display: flex;
+            flex-direction: column;
+            height: 200%;
+            /* Ensure the container takes up full height */
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+
+        textarea::selection {
+            background-color: #C1A5A9;
+            color: #1D1A31;
+        }
+
+        textarea {
+            border: none;
+            border-radius: 5px;
+            color: #9A4C95;
+            background-color: #4D2D52;
+            resize: none;
+            /* 100% width of the container */
+            flex-grow: 1;
+            /* Allow the textarea to grow vertically */
+            box-sizing: border-box;
+            /* Include padding in the width */
+        }
+
+        button {
+            display: block;
+            display: flex;
+            border-radius: 5px;
+            border: none;
+            background-color: #4D2D52;
+            color: #9A4C95;
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            margin-top: 10px;
+            /* Add margin for spacing */
+        }
+
+        /* Centered button styles */
+        .center-button-container {
+            grid-column: 1 / -1;
+            /* Span all columns */
+            display: flex;
+            justify-content: center;
+            /* Center horizontally */
+            padding-top: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="textarea-container">
+            <h3 id="htmlLabel">HTML</h3>
+            <textarea id="HTMLinput"></textarea>
+        </div>
+        <div class="textarea-container">
+            <h3 id="cssLabel">CSS</h3>
+            <textarea id="CSSinput"></textarea>
+        </div>
+        <div class="textarea-container">
+            <h3 id="jsLabel">JavaScript</h3>
+            <textarea id="JSinput"></textarea>
+        </div>
+    </div>
+
+    <div class="center-button-container">
+        <button id="compile" onclick="setSRC()"><b>run code</b></button>
+    </div>
+    <iframe id="HTMLOut" srcdoc=""></iframe>
+
+    <script>
+        function setSRC() {
+            document.getElementById('HTMLOut').srcdoc = "<style> body{background-color: white;}" + document.getElementById('CSSinput').value +"</sty"+"le>"+ document.getElementById('HTMLinput').value +  "<script>" + document.getElementById('JSinput').value + "</scr" + "ipt>";
+    }
+
+    </script>
+</body>
+
+</html>
